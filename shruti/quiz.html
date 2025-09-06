@@ -249,12 +249,16 @@ function showFeedback(){
     restartBtn.onclick = startQuiz;
     form.appendChild(restartBtn);
 
-    const homeBtn = document.createElement("button");
-    homeBtn.textContent = "🏠 Go to Home";
-    homeBtn.onclick = ()=> window.location.href="About.html";
-    form.appendChild(homeBtn);
-}
+      const homeBtn = document.createElement("button");
+homeBtn.type = "button";   // ✅ added form-safe attribute
+homeBtn.textContent = "🏠 Go to Home";
+homeBtn.onclick = () => window.location.href = "About.html";
+form.appendChild(homeBtn);
+
+} // <-- Add this closing brace for the script block
+
 </script>
 
 </body>
 </html>
+

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rivers of India</title>
+<style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    max-width: 700px;
+    text-align: center;
+    animation: slideIn 1.5s ease;
+}
+h1 {
+    font-family: 'Georgia', serif;
+    color: #1b5e20;
+    font-size: 2rem;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px #4caf50;
+}
+p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #2e7d32;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+img {
+    max-width: 100%;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    transition: transform 0.4s ease;
+}
+img:hover {
+    transform: scale(1.05) rotate(1deg);
+}
+.button {
+    padding: 12px 25px;
+    background: #1b5e20;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+.button:hover {
+    background: #2e7d32;
+    transform: translateY(-2px);
+}
+@keyframes slideIn {
+    from {opacity: 0; transform: translateY(30px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Rivers of India</h1>
+    <img src="../images/godavari.jpg" alt="Godavari River">
+    <p>
+        India is home to many sacred and life-sustaining rivers. The Godavari, often called the 'Ganga of South India', flows through states like Maharashtra and Andhra Pradesh. Rivers in India play a crucial role in agriculture, culture, and religion. They support biodiversity and provide water for daily use. Protecting these rivers is essential for sustaining India's environment and heritage.
+    </p>
+    <a class="button" href="javascript:void(0);" onclick="window.history.back();">Back to Score</a>
+</div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indian Festivals</title>
+<style>
+body {
+    font-family: 'Verdana', Geneva, Tahoma, sans-serif;
+    background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    max-width: 700px;
+    text-align: center;
+    animation: fadeIn 1.5s ease;
+}
+h1 {
+    font-family: 'Georgia', serif;
+    color: #e65100;
+    font-size: 2rem;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px #ffcc80;
+}
+p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #bf360c;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+img {
+    max-width: 100%;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    transition: transform 0.4s ease;
+}
+img:hover {
+    transform: scale(1.05) rotate(2deg);
+}
+.button {
+    padding: 12px 25px;
+    background: #e65100;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+.button:hover {
+    background: #bf360c;
+    transform: translateY(-2px);
+}
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(50px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Indian Festivals</h1>
+    <img src="../images/holi.jpg" alt="Holi Festival">
+    <p>
+        India is a land of festivals, each celebrated with unique traditions, colors, and joy. Festivals like Diwali, Holi, Baisakhi, and Onam reflect the rich cultural diversity of India. These celebrations foster community bonding and cultural continuity, while also offering opportunities to learn about history, religion, and the environment surrounding these traditions.
+    </p>
+    <a class="button" href="javascript:void(0);" onclick="window.history.back();">Back to Score</a>
+</div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">

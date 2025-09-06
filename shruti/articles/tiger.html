@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tigers of India</title>
+<style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    max-width: 700px;
+    text-align: center;
+    animation: slideIn 1.5s ease;
+}
+h1 {
+    font-family: 'Georgia', serif;
+    color: #bf360c;
+    font-size: 2rem;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px #ff7043;
+}
+p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #e65100;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+img {
+    max-width: 100%;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    transition: transform 0.4s ease;
+}
+img:hover {
+    transform: scale(1.05) rotate(-1deg);
+}
+.button {
+    padding: 12px 25px;
+    background: #bf360c;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+.button:hover {
+    background: #e64a19;
+    transform: translateY(-2px);
+}
+@keyframes slideIn {
+    from {opacity: 0; transform: translateY(50px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Tigers of India</h1>
+    <img src="../images/tiger.jpg" alt="Tiger in India">
+    <p>
+        Tigers are one of the most iconic animals of India, symbolizing strength and courage. India is home to the majority of the world's wild tigers, with national parks like Ranthambore and Jim Corbett providing protected habitats. Conservation efforts are crucial to preserving this endangered species and maintaining ecological balance.
+    </p>
+    <a class="button" href="javascript:void(0);" onclick="window.history.back();">Back to Score</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spin the Wheel - Indian States</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: linear-gradient(120deg, #74ebd5, #ACB6E5);
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .wheel-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 300px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  }
+
+  .slice {
+    width: 50%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+
+  .highlight {
+    transform: scale(1.3);
+    border: 2px solid #fff;
+  }
+
+  .spin-btn, .popup button, .back-btn {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .spin-btn { background: #ff5722; color: white; font-size: 16px; }
+  .spin-btn:hover { background: #e64a19; }
+
+  .popup {
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0,0,0,0.7);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    visibility:hidden;
+  }
+
+  .popup-content {
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+    width:300px;
+  }
+
+  .yes-btn { background: #4caf50; color:white; }
+  .no-btn { background: #f44336; color:white; }
+
+  .info-page {
+    display:none;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:#fff3e0;
+    text-align:center;
+  }
+
+  .back-btn { background:#2196f3; color:white; }
+</style>
+</head>
+<body>
+
+<div id="home">
+  <div class="wheel-container" id="wheel">
+    <!-- Slices generated dynamically -->
+  </div>
+  <button type="button" class="spin-btn" onclick="spinWheel()">Spin</button>
+</div>
+
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <p id="popup-text"></p>
+    <button type="button" class="yes-btn" onclick="showInfo()">Yes</button>
+    <button type="button" class="no-btn" onclick="closePopup()">Spin Again</button>
+  </div>
+</div>
+
+<div class="info-page" id="info-page">
+  <h1 id="state-title"></h1>
+  <p id="state-info"></p>
+  <button type="button" class="back-btn" onclick="goHome()">Go Back to Home</button>
+</div>
+
+<script>
+const states = [
+  "West Bengal","Maharashtra","Tamil Nadu","Rajasthan",
+  "Uttar Pradesh","Kerala","Punjab","Gujarat",
+  "Karnataka","Delhi","Bihar","Madhya Pradesh"
+];
+
+const stateInfo = {
+  "West Bengal":"Known for Kolkata, Howrah Bridge, Sundarbans, and sweets like Rosogolla.",
+  "Maharashtra":"Home to Mumbai, Bollywood, Ajanta-Ellora caves, and Gateway of India.",
+  "Tamil Nadu":"Temples like Meenakshi, Bharatanatyam dance, and Marina Beach.",
+  "Rajasthan":"Forts, palaces, deserts, Jaipur's Pink City, and camel rides.",
+  "Uttar Pradesh":"Famous for the Taj Mahal, Varanasi ghats, and Ayodhya's Ram Mandir.",
+  "Kerala":"Known as 'God's Own Country' for its backwaters and Ayurveda.",
+  "Punjab":"Golden Temple, bhangra dance, fertile lands, and butter chicken.",
+  "Gujarat":"Gir lions, Somnath temple, Rann of Kutch, and Gandhi's birthplace.",
+  "Karnataka":"Bengaluru, Mysore Palace, Hampi ruins, silk and coffee.",
+  "Delhi":"Capital with Red Fort, India Gate, Qutub Minar, and politics.",
+  "Bihar":"Nalanda University, Bodh Gaya, and ancient history.",
+  "Madhya Pradesh":"Khajuraho temples, wildlife parks, and forts."
+};
+
+const colors = ["#FF5733","#33FF57","#3357FF","#FF33A8","#FF8F33","#33FFF3","#9D33FF","#FFD433","#33FF99","#FF3333","#33A8FF","#A833FF"];
+
+const wheel = document.getElementById("wheel");
+const popup = document.getElementById("popup");
+const popupText = document.getElementById("popup-text");
+const infoPage = document.getElementById("info-page");
+const home = document.getElementById("home");
+const stateTitle = document.getElementById("state-title");
+const stateInfoP = document.getElementById("state-info");
+
+let selectedState = "";
+
+// Create slices
+states.forEach((state,i)=>{
+  const div = document.createElement("div");
+  div.className = "slice";
+  div.style.background = colors[i % colors.length];
+  div.innerText = state;
+  wheel.appendChild(div);
+});
+
+// Spin logic
+function spinWheel() {
+  const slices = document.querySelectorAll(".slice");
+  slices.forEach(s => s.classList.remove("highlight"));
+
+  // Animate highlight
+  let count = 0;
+  const rounds = Math.floor(Math.random()*10) + 15;
+  const interval = setInterval(()=>{
+    slices.forEach(s => s.classList.remove("highlight"));
+    slices[count % slices.length].classList.add("highlight");
+    count++;
+    if(count > rounds){
+      clearInterval(interval);
+      selectedState = states[(count-1)%slices.length];
+      popupText.innerText = `Do you want to know about ${selectedState}?`;
+      popup.style.visibility = "visible";
+    }
+  },100);
+}
+
+function closePopup(){ popup.style.visibility="hidden"; }
+function showInfo(){
+  popup.style.visibility="hidden";
+  home.style.display="none";
+  infoPage.style.display="flex";
+  stateTitle.innerText = selectedState;
+  stateInfoP.innerText = stateInfo[selectedState];
+}
+function goHome(){
+  infoPage.style.display="none";
+  home.style.display="block";
+}
+</script>
+
+</body>
+</html>

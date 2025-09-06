@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mountain - India Culture & Environment</title>
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #d0f0fd, #f0f8ff);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    animation: bgShift 10s infinite alternate;
+}
+
+@keyframes bgShift {
+    0% { background: linear-gradient(135deg, #d0f0fd, #f0f8ff);}
+    50% { background: linear-gradient(135deg, #a1c4fd, #c2e9fb);}
+    100% { background: linear-gradient(135deg, #d0f0fd, #f0f8ff);}
+}
+
+.article-container {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+    max-width: 800px;
+    width: 90%;
+    text-align: center;
+    animation: slideIn 1.2s ease;
+}
+
+@keyframes slideIn {
+    from {opacity: 0; transform: translateY(50px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+h1 {
+    font-family: 'Georgia', serif;
+    color: #1b5e20;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1);}
+    50% { transform: scale(1.05);}
+    100% { transform: scale(1);}
+}
+
+p {
+    font-size: 1.1rem;
+    color: #333;
+    margin: 15px 0;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.highlight {
+    color: #1b5e20;
+    font-weight: bold;
+    font-style: italic;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    border:none;
+    border-radius: 25px;
+    background: #388e3c;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #1b5e20;
+    transform: translateY(-2px);
+}
+</style>
+</head>
+<body>
+<div class="article-container">
+    <h1>Kanchenjunga: The Third Highest Mountain</h1>
+    <p>
+        <span class="highlight">Kanchenjunga</span> is the third-highest mountain in the world and the highest in India. Located on the border between Nepal and Sikkim, it is revered for its majestic beauty, snow-covered peaks, and diverse ecosystem.
+    </p>
+    <p>
+        This mountain plays a critical role in India’s <span class="highlight">environmental balance</span>, housing unique flora and fauna and serving as a source of rivers that sustain millions of lives downstream.
+    </p>
+    <p>
+        Learning about Kanchenjunga encourages students to appreciate <span class="highlight">nature conservation, ecological balance, and mountain ecosystems</span>, integrating geography, culture, and environmental awareness in a fun, educational way.
+    </p>
+    <button onclick="window.history.back()">Back to Quiz Feedback</button>
+</div>
+</body>
+</html>
+<!DOCTYPE html> html>
+<html lang="en">

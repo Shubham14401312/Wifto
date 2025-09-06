@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>States of India</title>
+<style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    max-width: 700px;
+    text-align: center;
+    animation: slideIn 1.5s ease;
+}
+h1 {
+    font-family: 'Georgia', serif;
+    color: #00796b;
+    font-size: 2rem;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px #4db6ac;
+}
+p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #004d40;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+img {
+    max-width: 100%;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    transition: transform 0.4s ease;
+}
+img:hover {
+    transform: scale(1.05) rotate(1deg);
+}
+.button {
+    padding: 12px 25px;
+    background: #00796b;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+.button:hover {
+    background: #004d40;
+    transform: translateY(-2px);
+}
+@keyframes slideIn {
+    from {opacity: 0; transform: translateY(50px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>States of India</h1>
+    <img src="../images/arunachal_pradesh.jpg" alt="Arunachal Pradesh">
+    <p>
+        India is a diverse country with 28 states and 8 union territories, each with its own unique culture, language, and traditions. Arunachal Pradesh, often called the 'Land of the Rising Sun', is known for its scenic beauty, indigenous tribes, and rich biodiversity. Learning about the states enhances cultural awareness and respect for regional differences.
+    </p>
+    <a class="button" href="javascript:void(0);" onclick="window.history.back();">Back to Score</a>
+</div>
+</body>
+</html>

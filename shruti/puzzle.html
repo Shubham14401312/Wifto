@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wifto Puzzle Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      margin: 20px;
+      color: #333;
+    }
+
+    #puzzle-container {
+      width: 300px;
+      height: 300px;
+      margin: 20px auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 2px;
+      border: 4px solid #333;
+      background: white;
+    }
+
+    .tile {
+      background-size: cover;
+      background-position: center;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+
+    #controls {
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      border-radius: 8px;
+      background: #1976d2;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #0d47a1;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧩 Sliding Puzzle Game</h1>
+  <div id="puzzle-container"></div>
+
+  <div id="controls">
+    <button onclick="shuffle()">🔀 Shuffle</button>
+    <button onclick="window.location.href='About.html'">🏠 Back to Home</button>
+  </div>
+
+  <script>
+    const puzzleContainer = document.getElementById("puzzle-container");
+    const size = 3;
+    let tiles = [];
+
+    function createPuzzle() {
+      tiles = [];
+      puzzleContainer.innerHTML = "";
+      for (let i = 0; i < size * size; i++) {
+        let tile = document.createElement("div");
+        tile.classList.add("tile");
+        tile.style.backgroundImage = i < size * size - 1 ? "url('EDU.JPG')" : "none";
+        tile.style.backgroundPosition = `${-(i % size) * 100}px ${-Math.floor(i / size) * 100}px`;
+        tile.dataset.index = i;
+        puzzleContainer.appendChild(tile);
+        tiles.push(tile);
+        tile.addEventListener("click", () => moveTile(i));
+      }
+    }
+
+    function moveTile(i) {
+      const emptyIndex = tiles.findIndex(t => t.style.backgroundImage === "none");
+      const row = Math.floor(i / size), col = i % size;
+      const emptyRow = Math.floor(emptyIndex / size), emptyCol = emptyIndex % size;
+
+      if ((Math.abs(row - emptyRow) + Math.abs(col - emptyCol)) === 1) {
+        tiles[emptyIndex].style.backgroundImage = tiles[i].style.backgroundImage;
+        tiles[emptyIndex].style.backgroundPosition = tiles[i].style.backgroundPosition;
+        tiles[i].style.backgroundImage = "none";
+      }
+    }
+
+    function shuffle() {
+      for (let i = 0; i < 100; i++) {
+        const randomIndex = Math.floor(Math.random() * (size * size));
+        moveTile(randomIndex);
+      }
+    }
+
+    createPuzzle();
+  </script>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz - India Culture & Environment</title>
+<style>
+/* ===== Base Layout ===== */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #89f7fe, #66a6ff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    margin: 0;
+}
+.quiz-container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    width: 100%;
+    max-width: 700px;
+    animation: fadeIn 1s ease;
+}
+h1 {
+    text-align: center;
+    color: #0d47a1;
+    margin-bottom: 25px;
+    animation: slideIn 1s ease;
+}
+.question {
+    margin: 20px 0;
+    font-size: 18px;
+    font-weight: bold;
+    animation: fadeInUp 0.8s ease;
+}
+.options label {
+    display: block;
+    padding: 12px;
+    border: 2px solid #7d40cc;
+    border-radius: 12px;
+    margin: 8px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.6s ease;
+}
+.options label:hover {
+    background: #7d40cc;
+    color: white;
+    transform: scale(1.05);
+}
+input[type="radio"] {
+    margin-right: 10px;
+}
+button {
+    margin: 20px 10px 0 0;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #2575fc, #6a11cb);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+button:hover {
+    transform: translateY(-3px) scale(1.05);
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+}
+.feedback {
+    background: #f1f8ff;
+    border-left: 5px solid #2575fc;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 10px;
+    animation: fadeInUp 0.8s ease;
+}
+.feedback p {
+    margin: 0;
+    font-size: 16px;
+}
+.feedback a {
+    display: inline-block;
+    margin-top: 8px;
+    color: #ff4081;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.feedback a:hover {
+    text-decoration: underline;
+    transform: scale(1.05);
+}
+
+/* ===== Animations ===== */
+@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+@keyframes slideIn { from {transform: translateY(-20px); opacity:0;} to {transform: translateY(0); opacity:1;} }
+@keyframes fadeInUp { from {transform: translateY(20px); opacity:0;} to {transform: translateY(0); opacity:1;} }
+
+/* ===== Score Section ===== */
+.score-box {
+    background: #e3f2fd;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    text-align: center;
+    animation: fadeIn 1s ease;
+}
+.score-box h2 {
+    margin: 0;
+    color: #0d47a1;
+}
+</style>
+</head>
+<body>
+
+<div class="quiz-container" id="quizContainer">
+    <h1>India: Environment & Culture Quiz</h1>
+    <div id="usernameDiv">
+        <label><strong>Enter your name:</strong></label><br><br>
+        <input type="text" id="username" placeholder="Your Name" style="padding:8px; border-radius:8px; border:1px solid #ccc; width:80%;">
+        <br><br>
+        <button onclick="startQuiz()">Start Quiz</button>
+    </div>
+    <form id="quizForm" style="display:none;"></form>
+</div>
+
+<script>
+const questions = [
+{q:"Which is the largest desert in India?", options:["Thar","Sambhar","Rann of Kutch","Kutch"], answer:"Thar", topic:"articles/desert2.html"},
+{q:"Which is the national bird of India?", options:["Peacock","Sparrow","Eagle","Kingfisher"], answer:"Peacock", topic:"articles/bird2.html"},
+{q:"Which river is known as the 'Ganga of South India'?", options:["Godavari","Krishna","Cauvery","Narmada"], answer:"Godavari", topic:"articles/river2.html"},
+{q:"Which festival is famous in Rajasthan?", options:["Diwali","Holi","Pushkar Fair","Onam"], answer:"Pushkar Fair", topic:"articles/festival2.html"},
+{q:"Which state is known as 'Land of Rising Sun'?", options:["Arunachal Pradesh","Sikkim","Assam","Nagaland"], answer:"Arunachal Pradesh", topic:"articles/state2.html"},
+{q:"Which national park is famous for tigers?", options:["Sundarbans","Kaziranga","Ranthambore","Jim Corbett"], answer:"Ranthambore", topic:"articles/tiger2.html"},
+{q:"Which dance form is from Kerala?", options:["Bharatanatyam","Kathak","Kathakali","Odissi"], answer:"Kathakali", topic:"articles/dance2.html"},
+{q:"Which mountain range is in North India?", options:["Himalayas","Vindhyas","Aravalli","Satpura"], answer:"Himalayas", topic:"articles/mountain2.html"},
+{q:"Which state is famous for tea gardens?", options:["Assam","Kerala","Goa","Punjab"], answer:"Assam", topic:"articles/tea2.html"},
+{q:"Which heritage site is in Delhi?", options:["Qutub Minar","Konark Sun Temple","Ajanta Caves","Hampi"], answer:"Qutub Minar", topic:"articles/heritage2.html"},
+{q:"Which is the national animal of India?", options:["Lion","Tiger","Elephant","Peacock"], answer:"Tiger", topic:"articles/animal2.html"},
+{q:"Which festival marks harvest in Punjab?", options:["Pongal","Baisakhi","Onam","Diwali"], answer:"Baisakhi", topic:"articles/festival2.html"},
+{q:"Which state is famous for handicrafts?", options:["Rajasthan","Kerala","Bihar","Punjab"], answer:"Rajasthan", topic:"articles/crafts2.html"},
+{q:"Which Indian city is called Pink City?", options:["Jaipur","Udaipur","Jodhpur","Ajmer"], answer:"Jaipur", topic:"articles/city2.html"},
+{q:"Which is the largest wetland in India?", options:["Chilika Lake","Sundarbans","Loktak Lake","Vembanad Lake"], answer:"Chilika Lake", topic:"articles/wetland2.html"},
+{q:"Which state is known for backwaters?", options:["Kerala","Goa","Tamil Nadu","Karnataka"], answer:"Kerala", topic:"articles/backwater2.html"},
+{q:"Which fort is UNESCO World Heritage site in Rajasthan?", options:["Amer Fort","Red Fort","Gwalior Fort","Agra Fort"], answer:"Amer Fort", topic:"articles/fort2.html"},
+{q:"Which river flows through Varanasi?", options:["Ganga","Yamuna","Godavari","Krishna"], answer:"Ganga", topic:"articles/river2.html"},
+{q:"Which festival is associated with colors?", options:["Diwali","Holi","Navratri","Eid"], answer:"Holi", topic:"articles/festival2.html"},
+{q:"Which mountain is the highest in India?", options:["Kanchenjunga","Nanda Devi","Kangchenjunga","Annapurna"], answer:"Kanchenjunga", topic:"articles/mountain2.html"}
+];
+
+let userResponses = {};
+let quizQuestions = [];
+let currentQ = 0;
+
+function startQuiz(){
+    const username = document.getElementById("username").value.trim();
+    if(!username){ alert("Please enter your name!"); return;}
+    localStorage.setItem("username", username);
+    document.getElementById("usernameDiv").style.display = "none";
+
+    quizQuestions = [...questions].sort(()=>0.5-Math.random()).slice(0,10);
+    userResponses = {};
+    currentQ = 0;
+    showQuestion();
+}
+
+function showQuestion(){
+    const form = document.getElementById("quizForm");
+    form.innerHTML = "";
+    form.style.display = "block";
+
+    if(currentQ >= quizQuestions.length){
+        showFeedback();
+        return;
+    }
+
+    const q = quizQuestions[currentQ];
+    const questionDiv = document.createElement("div");
+    questionDiv.className = "question";
+    questionDiv.innerHTML = `<strong>Q${currentQ+1}: ${q.q}</strong>`;
+    form.appendChild(questionDiv);
+
+    const optionsDiv = document.createElement("div");
+    optionsDiv.className = "options";
+    q.options.forEach(opt=>{
+        const label = document.createElement("label");
+        label.innerHTML = `<input type="radio" name="q${currentQ}" value="${opt}" required> ${opt}`;
+        optionsDiv.appendChild(label);
+    });
+    form.appendChild(optionsDiv);
+
+    const nextBtn = document.createElement("button");
+    nextBtn.type = "button";
+    nextBtn.textContent = currentQ === quizQuestions.length-1 ? "Submit Quiz" : "Next";
+    nextBtn.onclick = saveAnswer;
+    form.appendChild(nextBtn);
+}
+
+function saveAnswer(){
+    const selected = document.querySelector(`input[name="q${currentQ}"]:checked`);
+    if(!selected){ alert("Please select an answer!"); return;}
+    userResponses[`q${currentQ}`] = selected.value;
+    currentQ++;
+    showQuestion();
+}
+
+function showFeedback(){
+    const form = document.getElementById("quizForm");
+    form.innerHTML = "";
+    const username = localStorage.getItem("username") || "guest";
+    localStorage.setItem(`responses_${username}`, JSON.stringify(userResponses));
+
+    let score = 0;
+    const wrong = [];
+    quizQuestions.forEach((q,index)=>{
+        if(userResponses[`q${index}`] === q.answer){
+            score++;
+        } else {
+            wrong.push({question: q.q, correct: q.answer, chosen: userResponses[`q${index}`], topic: q.topic});
+        }
+    });
+
+    const scoreBox = document.createElement("div");
+    scoreBox.className = "score-box";
+    scoreBox.innerHTML = `<h2>Your Score: ${score} / ${quizQuestions.length}</h2>`;
+    form.appendChild(scoreBox);
+
+    if(wrong.length === 0){
+        form.innerHTML += "<p>🎉 All answers correct! Excellent job!</p>";
+    } else {
+        wrong.forEach(item=>{
+            const div = document.createElement("div");
+            div.className="feedback";
+            div.innerHTML = `<p><strong>Question:</strong> ${item.question}</p>
+            <p>❌ Your Answer: <span style="color:red;">${item.chosen}</span></p>
+            <p>✅ Correct Answer: <span style="color:green;">${item.correct}</span></p>
+            <a href="${item.topic}" target="_blank">📖 Learn More</a>`;
+            form.appendChild(div);
+        });
+    }
+
+    const restartBtn = document.createElement("button");
+    restartBtn.textContent = "🔄 Retake Quiz";
+    restartBtn.onclick = startQuiz;
+    form.appendChild(restartBtn);
+
+    const homeBtn = document.createElement("button");
+    homeBtn.textContent = "🏠 Go to Home";
+    homeBtn.onclick = ()=> window.location.href="About.html";
+    form.appendChild(homeBtn);
+}
+</script>
+
+</body>
+</html>
